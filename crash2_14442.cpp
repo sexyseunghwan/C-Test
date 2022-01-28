@@ -1,7 +1,5 @@
 #include <iostream>
-#include <stdio.h>
 #include <queue>
-#include <string.h>
 
 using namespace std;
 
