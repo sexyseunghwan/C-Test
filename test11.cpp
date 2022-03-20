@@ -1,18 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 int main() {
 
 
-    int a;
+    stack<int> st;
+    int dr[6] = {1,65,33,100,98,22};
 
-    scanf("%d",&a);
+    for (int i = 5; i > 0;) {
+        //st.push(i = dr[i]);
+        printf("%d\n",dr[i]);
+    }
 
-    printf("%d",a);
-
-    return 0;
+    //printf("%d",st.top());
 
 
 
