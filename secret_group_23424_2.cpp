@@ -37,7 +37,6 @@ void find_min(int start) {
     for (int i = 1; i <= N; i++) {
         sum_arr[i] += map[start][i];
     }
-
 }
 
 int main()
