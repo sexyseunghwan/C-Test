@@ -1,15 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <vector>
 
 using namespace std;
 
 int main() {
 
-    int a = 10;
-    char b = 10;
+    priority_queue< pair< pair<int,int>,int > > pq;
 
-    cout << b;
-    
+    pq.push(make_pair(make_pair(-4,-2),1));
+    pq.push(make_pair(make_pair(-1,-10),1));
+    pq.push(make_pair(make_pair(-1,-5),1));
+    pq.push(make_pair(make_pair(-1,-5),10));
+
+
+    cout << pq.top().first.first << " " << pq.top().first.second << " " << pq.top().second;
 
 
 
