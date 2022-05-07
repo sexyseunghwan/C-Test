@@ -15,7 +15,7 @@ int main() {
     pq.push(make_pair(make_pair(-1,-5),10));
 
 
-    cout << pq.top().first.first << " " << pq.top().first.second << " " << pq.top().second;
+    cout << pq.top().first.first << " " << pq.top().first.second << " " << pq.top().first.second;
 
 
 
