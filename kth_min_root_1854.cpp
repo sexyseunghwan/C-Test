@@ -9,7 +9,7 @@ using namespace std;
 int N,M,K;
 int INF = INT_MAX;
 vector< pair<int,int> > map[1002];
-priority_queue <int> heap[1002];
+priority_queue<int> heap[1002];
 
 void dijkstra() {
 
