@@ -2,12 +2,15 @@
 #include <queue>
 #include <vector>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
-int INF = 1100000;
+typedef long long ll;
+
+int INF = INT_MAX;
 int N,M,K;
-int val_matrix[10002][22];
+ll val_matrix[10002][22];
 vector < pair<int,int> > map[10002];
 
 void dijkstra() {
@@ -18,35 +21,37 @@ void dijkstra() {
         }
     }
     
-    priority_queue< pair<int,int> > pq;
-    pq.push(make_pair(0,1));
+    priority_queue< pair< int,pair<int,int> > > pq;
+    pq.push(make_pair(0,make_pair(0,1)));
     val_matrix[1][0] = 0;
-    
+
     while(!pq.empty()) {
-        int cur_u = pq.top().second;
-        int cur_d = -pq.top().first;
-        
+        int cur_cnt = pq.top().second.first;
+        int cur_u = pq.top().second.second;
+        ll cur_d = -pq.top().first;
+
         pq.pop();
+
+        if (val_matrix[cur_u][cur_cnt] < cur_d) continue;
         
         for (int i = 0; i < map[cur_u].size(); i++) {
             int next_u = map[cur_u][i].first;
-            int next_d = map[cur_u][i].second + cur_d;
-            
-            pq.pop();
+            ll next_d = map[cur_u][i].second + cur_d;
 
-            if (val_matrix[next_u][0] > next_d) val_matrix[next_u][0] = next_d;
+            if (val_matrix[next_u][cur_cnt] > next_d) {
+                val_matrix[next_u][cur_cnt] = next_d;
+                pq.push(make_pair(-next_d,make_pair(cur_cnt,next_u)));
+            }
 
-            for (int i = 1; i <= K; i++) {
-                int prev_d = val_matrix[cur_u][i-1];
-                if (val_matrix[next_u][i] > prev_d) {
-                    val_matrix[next_u][i] = prev_d;
-                    pq.push(make_pair(-prev_d,next_u));
-                }
+            if (val_matrix[next_u][cur_cnt + 1] > cur_d && cur_cnt + 1 <= K) {
+                val_matrix[next_u][cur_cnt + 1] = cur_d;
+                pq.push(make_pair(-cur_d,make_pair(cur_cnt+1,next_u)));
             }
         }
+       
     }
-    
 }
+    
 
 int main()
 {
@@ -66,19 +71,11 @@ int main()
     
     int min_val = INF;
 
-    for (int i = 0; i <= N; i++) {
-        for (int j = 0; j <= K; j++) {
-            cout << val_matrix[i][j] << " ";
-        }
-        cout << "\n";
+    for (int i = 0; i <= K; i++) {
+        min_val = min_val > val_matrix[N][i] ? val_matrix[N][i] : min_val;
     }
 
-
-    // for (int i = 0; i <= N; i++) {
-    //     min_val = min(min_val,val_matrix[N][i]);
-    // }
-
-    //cout << min_val;
+    cout << min_val;
 
     return 0;
 }
