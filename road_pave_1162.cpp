@@ -8,7 +8,7 @@ using namespace std;
 
 typedef long long ll;
 
-int INF = INT_MAX;
+ll INF = 1e15;
 int N,M,K;
 ll val_matrix[10002][22];
 vector < pair<int,int> > map[10002];
@@ -21,7 +21,7 @@ void dijkstra() {
         }
     }
     
-    priority_queue< pair< int,pair<int,int> > > pq;
+    priority_queue< pair< ll,pair<int,int> > > pq;
     pq.push(make_pair(0,make_pair(0,1)));
     val_matrix[1][0] = 0;
 
@@ -47,14 +47,17 @@ void dijkstra() {
                 val_matrix[next_u][cur_cnt + 1] = cur_d;
                 pq.push(make_pair(-cur_d,make_pair(cur_cnt+1,next_u)));
             }
-        }
-       
+        }   
     }
 }
     
 
 int main()
 {
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     
     cin >> N >> M >> K;
     
@@ -69,7 +72,7 @@ int main()
     
     dijkstra();
     
-    int min_val = INF;
+    ll min_val = INF;
 
     for (int i = 0; i <= K; i++) {
         min_val = min_val > val_matrix[N][i] ? val_matrix[N][i] : min_val;
