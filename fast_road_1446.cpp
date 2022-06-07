@@ -51,7 +51,7 @@ int main()
         map[u].push_back(make_pair(v,w));
     }
     
-    dijkstra();
+    dijkstra();//
 
     cout << fast_road[D];
 
