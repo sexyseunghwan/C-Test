@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <vector>
 #include <climits>
 
@@ -10,29 +9,31 @@ int N,D;
 int fast_road[10002];
 vector < pair<int,int> > map[10002];
 
-void dijkstra() {
+void dq() {
 
     for (int i = 0; i < D; i++) {
         fast_road[i] = INF;
     }
-    
-    fast_road[D] = D;
 
-    int prev = -1;
+    fast_road[D] = D;
 
     for (int i = 0; i <= D; i++) {
         
-        if (i) prev = fast_road[i-1];
-        fast_road[i] = min(fast_road[i],prev + 1);
+        int prev_dist;
+
+        if (i == 0) prev_dist = -1; 
+        else prev_dist = fast_road[i-1];
+
+        fast_road[i] = min(fast_road[i],prev_dist+1);
 
         for (int j = 0; j < map[i].size(); j++) {
-            int s_v = map[i][j].first;
-            int s_d = map[i][j].second;
+            int road = map[i][j].first;
+            int dist = map[i][j].second;
             
-            if (fast_road[s_v] > fast_road[i] + s_d) {
-                fast_road[s_v] = fast_road[i] + s_d;
+            if (fast_road[road] > fast_road[i] + dist) {
+                fast_road[road] = fast_road[i] + dist;
             }
-        }
+        }   
     }
 }
 
@@ -46,14 +47,15 @@ int main()
 
         cin >> u >> v >> w;
 
-        if ( v - u <= w) continue;
-        if ( v > D ) continue;
+        if (v > D) continue;
+        if (v - u < w) continue;
+
         map[u].push_back(make_pair(v,w));
     }
     
-    dijkstra();//
+    dq();
 
     cout << fast_road[D];
-
+  
     return 0;
 }
