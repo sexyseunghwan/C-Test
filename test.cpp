@@ -17,8 +17,10 @@ void dfs(int x, int y, int min_val)
 
 int main()
 {
+    cin >> N;
 
-    // cout << max_count;
+    for (int i = 0; i < N * N; i++)
+        cin >> matrix[i / N][i % N];
 
     return 0;
 }
