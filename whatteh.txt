@@ -1,0 +1,31 @@
+
+
+
+/var/log/elasticsearch/elasticsearch_deprecation.log
+
+org.elasticsearch.ElasticsearchException: not all primary shards of [.geoip_databases] index are active
+
+
+[Unit]
+Description=Elasticsearch Cluster
+Documentation=https://www.elastic.co/kr/products/elasticsearch
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+RuntimeDirectory=elasticsearch-7.9.1
+WorkingDirectory=/usr/local/elasticsearch
+
+LimitMEMLOCK=infinity
+LimitNOFILE=65535
+LimitNPROC=4096
+
+ExecStart=/home/elasticsearch/elasticsearch-7.17.5/bin/elasticsearch
+ExecReload=/home/elasticsearch/elasticsearch-7.17.5/bin/elasticsearch
+RestartSec=3
+
+User=elasticsearch
+Group=elasticsearch
+
+
+/home/elasticsearch/elasticsearch-7.17.5
