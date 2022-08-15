@@ -2,6 +2,10 @@
 #include <climits>
 #include <algorithm>
 #include <cstring>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
 
 using namespace std;
 
@@ -28,44 +32,51 @@ void dfs(int x, int y, int min_val)
 }
 
 int main()
-{
-    int min_layer = INT_MAX;
-    int max_layer = INT_MIN;
-    int max_count = 1;
+{   
 
-    cin >> N;
+    char s = 'K';
+    char a = 'a';
+    
+    if (s == 'C') cout << "yes";
+    else cout << "no";
 
-    for (int i = 0; i < N * N; i++)
-    {
-        int input;
-        cin >> input;
-        min_layer = min(min_layer, input);
-        max_layer = max(max_layer, input);
-        matrix[i / N][i % N] = input;
-    }
+    // int min_layer = INT_MAX;
+    // int max_layer = INT_MIN;
+    // int max_count = 1;
 
-    for (int i = min_layer; i <= max_layer; i++)
-    {
+    // cin >> N;
 
-        int count = 0;
+    // for (int i = 0; i < N * N; i++)
+    // {
+    //     int input;
+    //     cin >> input;
+    //     min_layer = min(min_layer, input);
+    //     max_layer = max(max_layer, input);
+    //     matrix[i / N][i % N] = input;
+    // }
 
-        memset(visit, 0, sizeof(visit));
+    // for (int i = min_layer; i <= max_layer; i++)
+    // {
 
-        for (int j = 0; j < N * N; j++)
-        {
-            int row = j / N;
-            int col = j % N;
+    //     int count = 0;
 
-            if (matrix[row][col] > i && visit[row][col] == 0)
-            {
-                dfs(row, col, i);
-                count++;
-            }
-        }
-        max_count = max(max_count, count);
-    }
+    //     memset(visit, 0, sizeof(visit));
 
-    cout << max_count;
+    //     for (int j = 0; j < N * N; j++)
+    //     {
+    //         int row = j / N;
+    //         int col = j % N;
+
+    //         if (matrix[row][col] > i && visit[row][col] == 0)
+    //         {
+    //             dfs(row, col, i);
+    //             count++;
+    //         }
+    //     }
+    //     max_count = max(max_count, count);
+    // }
+
+    // cout << max_count;
 
     return 0;
 }
