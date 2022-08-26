@@ -2,81 +2,74 @@
 #include <climits>
 #include <algorithm>
 #include <cstring>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 using namespace std;
 
-int matrix[101][101];
-int visit[101][101];
-int dx[4] = {0, 0, 1, -1};
-int dy[4] = {1, -1, 0, 0};
-int N;
+void dfs(const char* str) {
 
-void dfs(int x, int y, int min_val)
-{
-    visit[x][y] = 1;
-
-    for (int i = 0; i < 4; i++)
-    {
-        int new_x = x + dx[i];
-        int new_y = y + dy[i];
-
-        if (new_x < 0 || new_y < 0 || new_x >= N || new_y >= N || matrix[new_x][new_y] <= min_val || visit[new_x][new_y] == 1)
-            continue;
-
-        dfs(new_x, new_y, min_val);
-    }
+     cout<<str<<endl;
 }
+
+
+
 
 int main()
 {   
-
-    char s = 'K';
-    char a = 'a';
     
-    if (s == 'C') cout << "yes";
-    else cout << "no";
+    
 
-    // int min_layer = INT_MAX;
-    // int max_layer = INT_MIN;
-    // int max_count = 1;
+    string a = "trds\n";
+    cout << a << endl;
+    a.pop_back();
+    cout << a << endl;
+    //a.erase(remove(a.begin(),a.end(),'\n'));
 
-    // cin >> N;
+    //path.erase(remove(path.begin(),path.end(),'\n'))
 
-    // for (int i = 0; i < N * N; i++)
-    // {
-    //     int input;
-    //     cin >> input;
-    //     min_layer = min(min_layer, input);
-    //     max_layer = max(max_layer, input);
-    //     matrix[i / N][i % N] = input;
-    // }
+    //cout<<a;
+    //int b = 13;
 
-    // for (int i = min_layer; i <= max_layer; i++)
-    // {
+    //cout<<a+to_string(b)<<endl;
+    
+    //string c = stoi(b);
+    
+    //cout << a+c << endl;
+    //cout<<b+10<<endl;
 
-    //     int count = 0;
+    //string a = "lsdfkja;lsdkfj;alksdjf;laksdjf";
+    //const char *str = a;
+    //const char *str = "lsdfkja;lsdkfj;alksdjf;laksdjf";
+    //char ss[100] = "asd";
+    //ss[3] = 'k';
+    
+    //cout<<ss<<endl;
 
-    //     memset(visit, 0, sizeof(visit));
+    //const char *chr = ss;
 
-    //     for (int j = 0; j < N * N; j++)
-    //     {
-    //         int row = j / N;
-    //         int col = j % N;
+    //dfs(chr);
 
-    //         if (matrix[row][col] > i && visit[row][col] == 0)
-    //         {
-    //             dfs(row, col, i);
-    //             count++;
-    //         }
-    //     }
-    //     max_count = max(max_count, count);
-    // }
+    //string str = "hello";
+	
+    //string str2 = "word";
 
-    // cout << max_count;
+    //cout<<str+str2<<endl;
+    
+    //char* ch = new char[str.length() + 1];
+	//ch[str.length()] = '\0';
+	//copy(str.begin(), str.end(), ch);
 
+    //cout<<ch<<endl;
+
+
+
+    //cout<<str<<endl;
+    //cout<<result(strcpy(ch,str.c_str()))<<endl;
+    
+    //dfs(str);
+  
     return 0;
 }
