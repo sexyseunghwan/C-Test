@@ -19,7 +19,7 @@ int dynamic_prog(int r, int c) {
     for (int i = 0; i < 4; i++) {
         int nr = r + dr[i];
         int nc = c + dc[i];
-
+        
         if (nr >= 0 && nc >= 0 && nr < N && nc < N && map[nr][nc] > map[r][c]) {
             dp[r][c] = max(dp[r][c],dynamic_prog(nr,nc) + 1);
         }
