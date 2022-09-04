@@ -7,9 +7,11 @@ using namespace std;
 int N;
 int dp[501][501];
 int MAX = INT_MAX;
-int nums[501];
-int nums_index;
 pair<int,int> matrix[501];
+
+int remainder(int s, int k, int t) {
+    return matrix[s].first * matrix[k].second * matrix[t].second;
+}
 
 int main()
 {
@@ -20,14 +22,7 @@ int main()
     
     for (int i = 0; i < N; i++) {
         int r,c;
-        cin >> r >> c;
-        matrix[i].first = r;
-        matrix[i].second = c;
-        
-        if (i == 0) {
-            nums[nums_index++] = r;
-            nums[nums_index++] = c;
-        } else nums[nums_index++] = c;
+        cin >> matrix[i].first >> matrix[i].second;
     }
     
     if (N == 1) cout << matrix[0].first * matrix[0].second;
@@ -40,7 +35,7 @@ int main()
                 dp[s][t] = MAX;    
                 
                 for (int k = s; k < t; k++) {
-                    dp[s][t] = min(dp[s][t],dp[s][k] + dp[k+1][t] + nums[s] * nums[k+1] * nums[t+1]);
+                    dp[s][t] = min(dp[s][t],dp[s][k] + dp[k+1][t] + remainder(s,k,t));
                 }
             }
         }
