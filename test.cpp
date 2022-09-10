@@ -26,8 +26,8 @@ int main()
         pairs[i] = make_pair(r,c);
     }  
     
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N-i; j++) { 
+    for (int i = 0; i < N-1; i++) {
+        for (int j = 0; j < N-i-1; j++) { 
             int k = j;
             int s = i+j+1;
 
