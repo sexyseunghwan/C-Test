@@ -5,11 +5,15 @@ using namespace std;
 
 int T,W;
 int input[1002];
-int dp_arr[3][1002][32];
+int dp[3][32][1002];
 int max_val;
+
 
 int main()
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0), cout.tie(0);
+    
     cin >> T >> W;
 
     for (int i = 1; i <= T; i++) cin >> input[i];
@@ -20,24 +24,27 @@ int main()
             
             if (input[i] == 1) {
 
-                dp_arr[1][i][j] = max(dp_arr[1][i-1][j] + 1 , dp_arr[2][i-1][j-1] + 1);
-                dp_arr[2][i][j] = max(dp_arr[1][i-1][j-1], dp_arr[2][i-1][j]);
+                dp[1][j][i] = max(dp[1][j][i-1] + 1 , dp[2][j-1][i-1] + 1);
+                dp[2][j][i] = max(dp[1][j-1][i-1], dp[2][j][i-1]);
 
             } else {
                 
                 if (i == 1 && j == 1) continue;
                 
-                dp_arr[1][i][j] = max(dp_arr[1][i-1][j], dp_arr[2][i-1][j-1]);
-                dp_arr[2][i][j] = max(dp_arr[1][i-1][j-1] + 1, dp_arr[2][i-1][j] + 1);
+                dp[1][j][i] = max(dp[1][j][i-1], dp[2][j-1][i-1]);
+                dp[2][j][i] = max(dp[1][j-1][i-1] + 1, dp[2][j][i-1] + 1);
             }
         }
     }
 
-    for (int i = 1; i <= T+1; i++) {
-        max_val = max(max_val,max(dp_arr[1][T][i],dp_arr[2][T][i]));
+    for (int i = 1; i <= W+1; i++) {
+        max_val = max(max_val,max(dp[1][i][T],dp[2][i][T]));
     }
 
     cout << max_val;
+
+
+     
 
     return 0;
 }
